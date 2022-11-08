@@ -4,8 +4,9 @@ using namespace std;
 
 int main()
 {
-    int test;
-    cin >> test;
-    cout << test << "Hello world!" << endl;
+    int tab;
+    [-10,5,8,-4,1,3,0,-7]
+    
+    if()
     return 0;
 }
