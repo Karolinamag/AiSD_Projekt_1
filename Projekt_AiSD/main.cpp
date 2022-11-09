@@ -4,7 +4,7 @@ using namespace std;
 
 int* GenerowanieTablic (int ListaLiczb[]) {
 
-srand((unsigned) time(0));
+srand((unsigned) time(0);
 
 for (int j=0; j<10; j++){
     cout<<(1+rand() % 100 )<<endl;
@@ -15,7 +15,11 @@ for (int j=0; j<10; j++){
     cout<<ListaLiczb<<endl;
   return ListaLiczb;
 }
+int tab;
+    [-10,5,8,-4,1,3,0,-7]
 
+    if()
+    return 0;
 
 
 int main()
