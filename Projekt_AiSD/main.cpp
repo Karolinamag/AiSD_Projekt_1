@@ -1,4 +1,5 @@
 #include <iostream>
+#include <ctime>
 using namespace std;
 
 int* GenerowanieTablic (int ListaLiczb[]) {
@@ -14,5 +15,16 @@ for (int j=0; j<10; j++){
     cout<<ListaLiczb<<endl;
   return ListaLiczb;
 }
+
+
+
+int main()
+{
+    int Tablica[10];
+    cout << GenerowanieTablic(Tablica) << endl;
+
+    return 0;
+}
+
 
 
