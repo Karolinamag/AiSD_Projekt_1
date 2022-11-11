@@ -11,7 +11,14 @@ for (int j=0; j<10; j++){
 }
 }
 
+void GlownaFunkcjaPrzesuwania (int ListaLiczb[]){
 
+for (int j=0; j<10; j++){
+    if(ListaLiczb[j]<0){cout<<ListaLiczb[j]<<endl;}
+}
+
+
+}
 
 int main()
 {
@@ -24,6 +31,8 @@ for (int j=0; j<10; j++){
 }
 cout<<"]"<<endl;
 
+
+GlownaFunkcjaPrzesuwania(Tablica);
 
 
     return 0;
