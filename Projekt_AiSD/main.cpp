@@ -19,22 +19,38 @@ cout<<"]"<<endl;
 
 void GlownaFunkcjaPrzesuwania (int ListaLiczb[]){
 
-int Temp;
+int TabelaUjemnych[10];
+int WskaznikUjemnych = 0;
+int TabelaNieujemnych[10];
+int WskaznikNieujemnych = 0;
 
 for (int j=0; j<10; j++){
     if(ListaLiczb[j]<0){
-        for(int p=j; p<9; p++){
-            cout<<"Zamieniam "<<ListaLiczb[p]<<" z "<<ListaLiczb[p+1]<<endl;
-            Temp = ListaLiczb[p];
-            ListaLiczb[p]=ListaLiczb[p+1];
-            ListaLiczb[p+1]= Temp;
-        }
+        TabelaUjemnych[WskaznikUjemnych]=ListaLiczb[j];
+        WskaznikUjemnych++;
+    }else{
+        TabelaNieujemnych[WskaznikNieujemnych]=ListaLiczb[j];
+        WskaznikNieujemnych++;
     }
 }
 
+int PrzesunietaTabela[10];
+int WskaznikPrzesunietejTabeli = 0;
+
+    for (int j=0; j<WskaznikNieujemnych; j++){
+        PrzesunietaTabela[WskaznikPrzesunietejTabeli]=TabelaNieujemnych[j];
+        WskaznikPrzesunietejTabeli++;
+    }
+    for (int j=0; j<WskaznikUjemnych; j++){
+        PrzesunietaTabela[WskaznikPrzesunietejTabeli]=TabelaUjemnych[j];
+        WskaznikPrzesunietejTabeli++;
+    }
+
+
+
 cout<<"Tabica po przesunieciu = [ ";
 for (int j=0; j<10; j++){
-    cout <<ListaLiczb[j]<<" ";
+    cout <<PrzesunietaTabela[j]<<" ";
 }
 cout<<"]"<<endl;
 
@@ -52,4 +68,3 @@ int main()
 
     return 0;
 }
-
