@@ -1,9 +1,9 @@
-/*Dla zadanej tablicy liczb ca³kowitych przesuñ wszystkie elementy mniejsze od 0 na jej koniec (nale¿y zachowaæ kolejnoœæ wystêpowania!).
+/*Dla zadanej tablicy liczb calkowitych przesuñ wszystkie elementy mniejsze od 0 na jej koniec (nalezy zachowac kolejnosc wystepowania!).
 
-Przyk³ad:
+Przyklad:
 
-Wejœcie: A[] = [-10, 5, 8, -4, 1, 3, 0, -7]
-Wyjœcie: [5, 8, 1, 3, 0, -10, -4, -7] 
+Wejscie: A[] = [-10, 5, 8, -4, 1, 3, 0, -7]
+Wyjscie: [5, 8, 1, 3, 0, -10, -4, -7]
 
 */
 
@@ -15,11 +15,11 @@ void GenerowanieTablic (int ListaLiczb[]) {
 
 srand((unsigned) time(0));
 
-for (int j=0; j<10; j++)
+for (int j=0; j<10; j++){
     ListaLiczb[j]=((rand() % 20)-10 );
 }
 
-cout<<"Wygenerowana Tabica = [ ";
+cout<<"Wygenerowana Tablica = [ ";
 for (int j=0; j<10; j++){
     cout <<ListaLiczb[j]<<" ";
 }
@@ -57,7 +57,7 @@ int WskaznikPrzesunietejTabeli = 0;
 
 
 
-cout<<"Tabica po przesunieciu = [ ";
+cout<<"Tablica po przesunieciu = [ ";
 for (int j=0; j<10; j++){
     cout <<PrzesunietaTabela[j]<<" ";
 }
