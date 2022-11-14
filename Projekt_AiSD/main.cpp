@@ -1,3 +1,12 @@
+/*Dla zadanej tablicy liczb ca³kowitych przesuñ wszystkie elementy mniejsze od 0 na jej koniec (nale¿y zachowaæ kolejnoœæ wystêpowania!).
+
+Przyk³ad:
+
+Wejœcie: A[] = [-10, 5, 8, -4, 1, 3, 0, -7]
+Wyjœcie: [5, 8, 1, 3, 0, -10, -4, -7] 
+
+*/
+
 #include <iostream>
 #include <ctime>
 using namespace std;
@@ -6,7 +15,7 @@ void GenerowanieTablic (int ListaLiczb[]) {
 
 srand((unsigned) time(0));
 
-for (int j=0; j<10; j++){
+for (int j=0; j<10; j++)
     ListaLiczb[j]=((rand() % 20)-10 );
 }
 
