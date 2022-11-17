@@ -5,129 +5,202 @@
 using namespace std::chrono; //potrzebne do mierzenia czasu
 using namespace std;
 
-//Pierwsza funkcja służy do wczytania tabeli z pliku txt
-int * WczytanieTablicy (){ //Funkcja zdefiniowana tak żeby nie przyjmowała żadnych argumentów i tak żeby zwracała wczytaną tablicy
 
-    fstream wczytywanie; //Tworzenie zmiennej, do której zapisany będzie plik, typu do tego przeznaczonego
+//Pierwsza funkcja s³u¿y do wczytania tabeli z pliku txt
+int * WczytanieTablicy (){ //Funkcja zdefiniowana tak ¿eby nie przyjmowa³a ¿adnych argumentów i tak ¿eby zwraca³a wczytan¹ tablicy
 
-    wczytywanie.open("Liczby.txt", ios::in); //Otwieranie wcześniej przygotowanego pliku tekstowego
+    fstream wczytywanie; //Tworzenie zmiennej, do której zapisany bêdzie plik, typu do tego przeznaczonego
 
-    int i=0; //Deklaracja iteratora który będzie służył do zapisywania danych i równocześnie do zmierzenia długości tablicy
-    int * WczytanaTabela = new int[i]; //Tworzenie tablicy dynamicznej do której zapisane będą liczby
-    while(!wczytywanie.eof()){ //While wykonuje się aż skończy się plik
-       wczytywanie >> WczytanaTabela[i]; //Po kolei wczytywane są liczby na kolejne miejsca w tablicy
-       i++; //Iterator jest zwiększany przy każdym wczytaniu liczby, co na raz liczy ile liczb jest wczytane i służy do wskazania kolejnego miejsca na które wpisywana jest liczba
+    wczytywanie.open("Liczby.txt", ios::in); //Otwieranie wczeœniej przygotowanego pliku tekstowego
+
+    int i=0; //Deklaracja iteratora który bêdzie s³u¿y³ do zapisywania danych i równoczeœnie do zmierzenia d³ugoœci tablicy
+    int * WczytanaTabela = new int[i]; //Tworzenie tablicy dynamicznej do której zapisane bêd¹ liczby
+    while(!wczytywanie.eof()){ //While wykonuje siê a¿ skoñczy siê plik
+       wczytywanie >> WczytanaTabela[i]; //Po kolei wczytywane s¹ liczby na kolejne miejsca w tablicy
+       i++; //Iterator jest zwiêkszany przy ka¿dym wczytaniu liczby, co na raz liczy ile liczb jest wczytane i s³u¿y do wskazania kolejnego miejsca na które wpisywana jest liczba
     }
     wczytywanie.close(); //Zamykanie pliku
 
     //Wypisywanie do konsoli wczytanej tablicy
     cout<<"Wczytana Tablica = [ ";
-    for (int j=0; j<i; j++){ //For idący od 0 do i (które jest jest ilością liczb)
+    for (int j=0; j<i; j++){ //For id¹cy od 0 do i (które jest jest iloœci¹ liczb)
         cout <<WczytanaTabela[j]<<" ";
     }
     cout<<"]"<<endl;
 
-return WczytanaTabela; //Funkcja zwraca wczytaną tablicy
+return WczytanaTabela; //Funkcja zwraca wczytan¹ tablicy
 
 }
 
-//Druga funkcja generuje tablicę liczb naturalnych od -100 do 100
-int * GenerowanieTablic (int N) { //Przyjmuje argument długości tabicy do wygenerowania i zwraca tablicę
+//Druga funkcja generuje tablicê liczb naturalnych od -100 do 100
+int * GenerowanieTablic (int N, int gran) { //Przyjmuje argument d³ugoœci tabicy do wygenerowania i granice rozrzutu wartości i zwraca tablicê
 
 srand((unsigned) time(0)); //Potrzebne do generowania liczb losowych
 int * GenerowanaTablica = new int[N]; //Deklaracja tablicy dynamicznej na liczby
 
-for (int j=0; j<N; j++){ //for działający N (przesłana do funkcji porządana długość tablicy) razy
-    GenerowanaTablica[j]=((rand()%400)-200); //Wykonywanie na rand modulo 200 daje liczby od 0 do 200, a potem odjęcie 100, daje liczby od -100 do 100
+for (int j=0; j<N; j++){ //for dzia³aj¹cy N (przes³ana do funkcji porz¹dana d³ugoœæ tablicy) razy
+    GenerowanaTablica[j]=((rand()%gran*2)-gran); //Wykonywanie na rand modulo  np. 200 daje liczby od 0 do 200, a potem odjêcie 100, daje liczby od -100 do 100
 }
 
-//Kolejna sekcja do wyświetlania, przeszkadza przy generowaniu dużej ilości tablic
+//Kolejna sekcja do wyœwietlania, przeszkadza przy generowaniu du¿ej iloœci tablic
 //cout<<"Wygenerowana Tabica = [ ";
 //for (int j=0; j<N; j++){
 //    cout <<GenerowanaTablica[j]<<" ";
 //}
 //cout<<"]"<<endl;
 
-return GenerowanaTablica; //Funkcja zwraca wygenerowaną tablicę
+return GenerowanaTablica; //Funkcja zwraca wygenerowan¹ tablicê
 }
 
-//Główana funkcja projektu, bierze tablicę, znajduje w niej liczby ujemne i przesówa je na koniec
-int * GlownaFunkcjaPrzesuwania (int PrzesuwanaTablica[]){ //Funkcja przyjmuje jeden argument, tablicę do przesortowania, i zwraca przesortowaną tablicę
+//G³ówana funkcja projektu, bierze tablicê, znajduje w niej liczby ujemne i przesówa je na koniec
+int * GlownaFunkcjaPrzesuwania (int PrzesuwanaTablica[], int N){ //Funkcja przyjmuje dwa argumenty, tablicê do przesortowania i jej długość, i zwraca przesortowan¹ tablicê
 
-int N=sizeof(PrzesuwanaTablica); //Mierzenie długości tablicy
-int TablicaUjemnych[N]; //Tworzenie pustej tablicy gdzie zapisane będą liczby ujemne
-int IteratorUjemnych = 0; //Tworzenie iteratora który będzie służył do wstawiania do tablicy ujemnych i do liczenia ich ilości
-int TablicaNieujemnych[N]; //Tworzenie pustej tablicy gdzie zapisane będą liczby nieujemne
-int IteratorNieujemnych = 0; //Tworzenie iteratora który będzie służył do wstawiania do tablicy nieujemnych i do liczenia ich ilości
+int TablicaUjemnych[N]; //Tworzenie pustej tablicy gdzie zapisane bêd¹ liczby ujemne
+int IteratorUjemnych = 0; //Tworzenie iteratora który bêdzie s³u¿y³ do wstawiania do tablicy ujemnych i do liczenia ich iloœci
+int TablicaNieujemnych[N]; //Tworzenie pustej tablicy gdzie zapisane bêd¹ liczby nieujemne
+int IteratorNieujemnych = 0; //Tworzenie iteratora który bêdzie s³u¿y³ do wstawiania do tablicy nieujemnych i do liczenia ich iloœci
 int * PrzesunietaTablica = new int[N]; //Tworzenie tablicy dynamicznej na finalny wynik
-int IteratorPrzesunietejtablicy = 0; //Tworzenie iteratora który będzie służył do wstawiania do tablicy finalnej
+int IteratorPrzesunietejtablicy = 0; //Tworzenie iteratora który bêdzie s³u¿y³ do wstawiania do tablicy finalnej
 
-for (int j=0; j<N; j++){ //For wykonuje się N (długość tablicy) razy
-    if(PrzesuwanaTablica[j]<0){ //Jeśli element tablicy jest mniejszy od zera to przejście do pierwszej sekcji
+for (int j=0; j<N; j++){ //For wykonuje siê N (d³ugoœæ tablicy) razy
+    if(PrzesuwanaTablica[j]<0){ //Jeœli element tablicy jest mniejszy od zera to przejœcie do pierwszej sekcji
         TablicaUjemnych[IteratorUjemnych]=PrzesuwanaTablica[j]; //Zapisywanie liczby do tablicy z ujemnymi
-        IteratorUjemnych++; //Zwiększanie o 1 liczby ujmnych elementów i zarazem liczenie ich
-    }else{ //Jeśli nie jest mniejszy od zera to do drugiej sekcji
+        IteratorUjemnych++; //Zwiêkszanie o 1 liczby ujmnych elementów i zarazem liczenie ich
+    }else{ //Jeœli nie jest mniejszy od zera to do drugiej sekcji
         TablicaNieujemnych[IteratorNieujemnych]=PrzesuwanaTablica[j]; //Zapisywanie liczby do tablicy z nieujemnymi
-        IteratorNieujemnych++; //Zwiększanie o 1 liczby nieujmnych elementów i zarazem liczenie ich
+        IteratorNieujemnych++; //Zwiêkszanie o 1 liczby nieujmnych elementów i zarazem liczenie ich
     }
 }
 
-    for (int j=0; j<IteratorNieujemnych; j++){ //For wykonuje się tyle razy, ile znaleziono liczb nieujemnych
+    for (int j=0; j<IteratorNieujemnych; j++){ //For wykonuje siê tyle razy, ile znaleziono liczb nieujemnych
         PrzesunietaTablica[IteratorPrzesunietejtablicy]=TablicaNieujemnych[j]; //Dopisywanie do Finalnej tablicy liczb nieujemnych
-        IteratorPrzesunietejtablicy++; //Zwiększanie iteratora elementów w finalnej tabeli i zarazem liczenie ich
+        IteratorPrzesunietejtablicy++; //Zwiêkszanie iteratora elementów w finalnej tabeli i zarazem liczenie ich
     }
-    for (int j=0; j<IteratorUjemnych; j++){//For wykonuje się tyle razy, ile znaleziono liczb ujemnych
+    for (int j=0; j<IteratorUjemnych; j++){//For wykonuje siê tyle razy, ile znaleziono liczb ujemnych
         PrzesunietaTablica[IteratorPrzesunietejtablicy]=TablicaUjemnych[j]; //Dopisywanie do Finalnej tablicy liczb ujemnych (to dalej ten sama tablica z poprzedniego fora)
-        IteratorPrzesunietejtablicy++; //Zwiększanie iteratora elementów w finalnej tabeli i zarazem liczenie ich (to dalej ten sam iterator z poprzedniego fora)
+        IteratorPrzesunietejtablicy++; //Zwiêkszanie iteratora elementów w finalnej tabeli i zarazem liczenie ich (to dalej ten sam iterator z poprzedniego fora)
     }
 
 
 
-return PrzesunietaTablica; //Funkcja zwraca przesuniętą tablicę
+return PrzesunietaTablica; //Funkcja zwraca przesuniêt¹ tablicê
 }
 
-//Funkcja main, tu odpalane są inne fukncje i ich obsługa
+//Funkcja main, tu odpalane s¹ inne fukncje i ich obs³uga
 int main()
 {
-    int * Tablica; //Tworzenie tablicy dynamicznej do której będą przypisywane wyniki
+    int * Tablica; //Tworzenie tablicy dynamicznej do której bêd¹ przypisywane wyniki
 
-    Tablica = WczytanieTablicy (); //Wywołanie funkcji wczytywania tablicy i przypisanie wyjścia do zmiennej "Tablica" (czyli tablicy z pliku)
 
-    Tablica = GlownaFunkcjaPrzesuwania(Tablica); //Wywołanie głównej funkcji gdzie argumentem jest tablica wczytana z pliku
+
+
+    cout<<"Pzykład wczytywania z pliku:"<<endl<<endl;
+
+    Tablica = WczytanieTablicy (); //Wywo³anie funkcji wczytywania tablicy i przypisanie wyjœcia do zmiennej "Tablica" (czyli tablicy z pliku)
+
+    Tablica = GlownaFunkcjaPrzesuwania(Tablica,sizeof(Tablica)); //Wywo³anie g³ównej funkcji gdzie argumentem jest tablica wczytana z pliku
 
     //Wypisanie wyniku przesuwania
     cout<<"Tabica po przesunieciu = [ ";
     for (int j=0; j<sizeof(Tablica); j++){
        cout<<Tablica[j]<<" ";
     }
+    cout<<"]"<<endl<<endl;
+
+
+
+
+    cout<<"Pzykład generowania Tabel:"<<endl<<endl;
+
+
+
+    cout<<"Długość: 10 Granica: 100"<<endl;
+
+    Tablica = GenerowanieTablic (10,100);
+
+    cout<<"Wygenerowana Tablica = [ ";
+    for (int j=0; j<10; j++){
+        cout <<Tablica[j]<<" ";
+    }
     cout<<"]"<<endl;
 
-    fstream zapisywanie; //Tworzenie zmiennej, która będzie przekazywać dane do pliku, typu do tego przeznaczonego
-    zapisywanie.open("Wynik.txt", ios::out); //Otwieranie nowego pliku tekstowego do którego zapisywany będzie wynik
-    zapisywanie<<"Tabica po przesunieciu = [ "; //Zamiast "cout" mamy zmienną "zapisywanie" więc wszytko idzie do pliku txt
+    Tablica = GlownaFunkcjaPrzesuwania(Tablica,10);
+
+    cout<<"Posortowana Tablica = [ ";
+    for (int j=0; j<10; j++){
+        cout <<Tablica[j]<<" ";
+    }
+    cout<<"]"<<endl<<endl;
+
+
+
+    cout<<"Długość: 100 Granica: 200"<<endl;
+
+    Tablica = GenerowanieTablic (100,200);
+
+    cout<<"Wygenerowana Tablica = [ ";
+    for (int j=0; j<100; j++){
+        cout <<Tablica[j]<<" ";
+    }
+    cout<<"]"<<endl;
+
+    Tablica = GlownaFunkcjaPrzesuwania(Tablica,100);
+
+    cout<<"Posortowana Tablica = [ ";
+    for (int j=0; j<100; j++){
+        cout <<Tablica[j]<<" ";
+    }
+    cout<<"]"<<endl<<endl;
+
+
+
+    cout<<"Długość: 1000 Granica: 5000"<<endl;
+
+    Tablica = GenerowanieTablic (500,5000);
+
+    cout<<"Wygenerowana Tablica = [ ";
+    for (int j=0; j<500; j++){
+        cout <<Tablica[j]<<" ";
+    }
+    cout<<"]"<<endl;
+
+    Tablica = GlownaFunkcjaPrzesuwania(Tablica,500);
+
+    cout<<"Posortowana Tablica = [ ";
+    for (int j=0; j<500; j++){
+        cout <<Tablica[j]<<" ";
+    }
+    cout<<"]"<<endl;
+
+
+
+
+    fstream zapisywanie; //Tworzenie zmiennej, która bêdzie przekazywaæ dane do pliku, typu do tego przeznaczonego
+    zapisywanie.open("Wynik.txt", ios::out); //Otwieranie nowego pliku tekstowego do którego zapisywany bêdzie wynik
+    zapisywanie<<"Tabica po przesunieciu = [ "; //Zamiast "cout" mamy zmienn¹ "zapisywanie" wiêc wszytko idzie do pliku txt
     for (int j=0; j<sizeof(Tablica); j++){
        zapisywanie<<Tablica[j]<<" ";
     }
     zapisywanie<<"]"<<endl;
-    zapisywanie.close(); //Zamknięcie pliku
+    zapisywanie.close(); //Zamkniêcie pliku
 
-    fstream zapisywanie2; //Tworzenie zmiennej, która będzie przekazywać dane do pliku, typu do tego przeznaczonego
-    zapisywanie2.open("Czasy.txt", ios::out); //Otwieranie nowego pliku tekstowego do którego zapisywane będą wyniki
+    fstream zapisywanie2; //Tworzenie zmiennej, która bêdzie przekazywaæ dane do pliku, typu do tego przeznaczonego
+    zapisywanie2.open("Czasy.txt", ios::out); //Otwieranie nowego pliku tekstowego do którego zapisywane bêd¹ wyniki
 
-    for (int ile=100000; ile<250000; ile+=100){ //For który wykonuje się 1500 razy, wartość iteratora jest na raz też długością tablicy którą każemy wygenerować programowi. Jest ona tak duża bo co dopiero taka długość daje jakikolwiek czas działania
+    for (int ile=100000; ile<250000; ile+=100){ //For który wykonuje siê 1500 razy, wartoœæ iteratora jest na raz te¿ d³ugoœci¹ tablicy któr¹ ka¿emy wygenerowaæ programowi. Jest ona tak du¿a bo co dopiero taka d³ugoœæ daje jakikolwiek czas dzia³ania
 
-        Tablica = GenerowanieTablic (ile); //Wywołanie generowania tablic o długości zgodnej z iteratorem for'a
+        Tablica = GenerowanieTablic (ile,200); //Wywo³anie generowania tablic o d³ugoœci zgodnej z iteratorem for'a
 
         auto start = high_resolution_clock::now(); //Start mierzenia czasu
 
-        GlownaFunkcjaPrzesuwania(Tablica); //Wywołanie głównej funkcji z wygnenrowaną tablicą
+        GlownaFunkcjaPrzesuwania(Tablica,ile); //Wywo³anie g³ównej funkcji z wygnenrowan¹ tablic¹
 
         auto koniec = high_resolution_clock::now(); //Koniec mierzenia czasu
-        auto duration = duration_cast<microseconds>(koniec - start); //Odejmowanie czasu początkowego od końcowego i konwersja na microsekundy
-        zapisywanie2<<duration.count()<<endl; //zapisywanie każdego czasu do pliku
+        auto duration = duration_cast<microseconds>(koniec - start); //Odejmowanie czasu pocz¹tkowego od koñcowego i konwersja na microsekundy
+        zapisywanie2<<duration.count()<<endl; //zapisywanie ka¿dego czasu do pliku
 
     }
-    zapisywanie.close(); //zamknięcie pliku
+    zapisywanie.close(); //zamkniêcie pliku
 
     return 0;
 }
