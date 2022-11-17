@@ -189,10 +189,10 @@ fstream zapisywanie; //Tworzenie zmiennej, ktora bedzie przekazywaæ dane do pli
 
 
 
-    fstream zapisywanie2; //Tworzenie zmiennej, ktora bedzie przekazywaæ dane do pliku, typu do tego przeznaczonego
+    fstream zapisywanie2; //Tworzenie zmiennej, ktora bedzie przekazywal dane do pliku, typu do tego przeznaczonego
     zapisywanie2.open("Czasy.txt", ios::out); //Otwieranie nowego pliku tekstowego do ktorego zapisywane beda wyniki
 
-    for (int ile=100000; ile<250000; ile+=100){ //For ktory wykonuje sie 1500 razy, wartosc iteratora jest na raz tez dlugoœcia tablicy ktora kazemy wygenerowaæ programowi. Jest ona tak duza bo co dopiero taka dlugoœæ daje jakikolwiek czas dzialania
+    for (int ile=100000; ile<250000; ile+=100){ //For, ktory wykonuje sie 1500 razy, wartosc iteratora jest na raz tez dlugoœcia tablicy ktora kazemy wygenerowaæ programowi. Jest ona tak duza bo co dopiero taka dlugoœæ daje jakikolwiek czas dzialania
 
         Tablica = GenerowanieTablic (ile,200); //Wywolanie generowania tablic o dlugoœci zgodnej z iteratorem for'a
 
