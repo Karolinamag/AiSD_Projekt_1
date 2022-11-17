@@ -115,6 +115,14 @@ int main()
     cout<<"]"<<endl<<endl;
 
 
+fstream zapisywanie; //Tworzenie zmiennej, ktora bedzie przekazywaæ dane do pliku, typu do tego przeznaczonego
+    zapisywanie.open("Wynik.txt", ios::out); //Otwieranie nowego pliku tekstowego do ktorego zapisywany bedzie wynik
+    zapisywanie<<"Tablica po przesunieciu = [ "; //Zamiast "cout" mamy zmienna "zapisywanie" wiec wszytko idzie do pliku txt
+    for (int j=0; j<sizeof(Tablica); j++){
+       zapisywanie<<Tablica[j]<<" ";
+    }
+    zapisywanie<<"]"<<endl;
+    zapisywanie.close(); //Zamkniecie pliku
 
     //Tutaj 3 razy sa generowane, przesuwane i wyswietlana tablice o roznej dlugosci, zeby pokazac dzialanie algorytmu
     cout<<"Pzyklad generowania Tablic:"<<endl<<endl;
@@ -180,16 +188,6 @@ int main()
     cout<<"]"<<endl;
 
 
-
-
-    fstream zapisywanie; //Tworzenie zmiennej, ktora bedzie przekazywaæ dane do pliku, typu do tego przeznaczonego
-    zapisywanie.open("Wynik.txt", ios::out); //Otwieranie nowego pliku tekstowego do ktorego zapisywany bedzie wynik
-    zapisywanie<<"Tablica po przesunieciu = [ "; //Zamiast "cout" mamy zmienna "zapisywanie" wiec wszytko idzie do pliku txt
-    for (int j=0; j<sizeof(Tablica); j++){
-       zapisywanie<<Tablica[j]<<" ";
-    }
-    zapisywanie<<"]"<<endl;
-    zapisywanie.close(); //Zamkniecie pliku
 
     fstream zapisywanie2; //Tworzenie zmiennej, ktora bedzie przekazywaæ dane do pliku, typu do tego przeznaczonego
     zapisywanie2.open("Czasy.txt", ios::out); //Otwieranie nowego pliku tekstowego do ktorego zapisywane beda wyniki
