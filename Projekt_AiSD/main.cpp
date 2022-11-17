@@ -1,5 +1,12 @@
+/*
+Dla zadanej tablicy liczb całkowitych przesuń wszystkie elementy mniejsze od 0 na jej koniec (należy zachować kolejność występowania!).
+Przykład:
+Wejście: A[] = [-10, 5, 8, -4, 1, 3, 0, -7]
+Wyjście: [5, 8, 1, 3, 0, -10, -4, -7]
+*/
+
 #include <iostream>
-#include <ctime> //biblioteka potrzebna to losowania
+#include <ctime> //biblioteka potrzebna do losowania
 #include <fstream> //biblioteka do wczytywania i zapisywania do txt
 #include <chrono> //biblioteka do mierzenia czasu
 using namespace std::chrono; //potrzebne do mierzenia czasu
@@ -11,7 +18,7 @@ int * WczytanieTablicy (){ //Funkcja zdefiniowana tak zeby nie przyjmowala zadny
 
     fstream wczytywanie; //Tworzenie zmiennej, do ktorej zapisany bedzie plik, typu do tego przeznaczonego
 
-    wczytywanie.open("Liczby.txt", ios::in); //Otwieranie wczeœniej przygotowanego pliku tekstowego
+    wczytywanie.open("Liczby.txt", ios::in); //Otwieranie wczesniej przygotowanego pliku tekstowego
 
     int i=0; //Deklaracja iteratora ktory bedzie sluzyl do zapisywania danych i rownoczeœnie do zmierzenia dlugoœci tablicy
     int * WczytanaTabela = new int[i]; //Tworzenie tablicy dynamicznej do ktorej zapisane beda liczby
@@ -187,7 +194,7 @@ int main()
     fstream zapisywanie2; //Tworzenie zmiennej, ktora bedzie przekazywaæ dane do pliku, typu do tego przeznaczonego
     zapisywanie2.open("Czasy.txt", ios::out); //Otwieranie nowego pliku tekstowego do ktorego zapisywane beda wyniki
 
-    for (int ile=100000; ile<250000; ile+=100){ //For ktory wykonuje sie 1500 razy, wartoœæ iteratora jest na raz tez dlugoœcia tablicy ktora kazemy wygenerowaæ programowi. Jest ona tak duza bo co dopiero taka dlugoœæ daje jakikolwiek czas dzialania
+    for (int ile=100000; ile<250000; ile+=100){ //For ktory wykonuje sie 1500 razy, wartosc iteratora jest na raz tez dlugoœcia tablicy ktora kazemy wygenerowaæ programowi. Jest ona tak duza bo co dopiero taka dlugoœæ daje jakikolwiek czas dzialania
 
         Tablica = GenerowanieTablic (ile,200); //Wywolanie generowania tablic o dlugoœci zgodnej z iteratorem for'a
 
